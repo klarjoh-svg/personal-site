@@ -1,14 +1,3 @@
-// =========================================================
-// Austin Franklin :: main.js
-//
-// One PixiJS canvas sits behind the page and draws two things:
-//   1. a field of dots that the pointer pushes and clicks ripple through
-//   2. a generative image inside every project tile
-//
-// Structure:
-//   setup -> colours -> input -> dot field -> motifs -> frame loop
-// =========================================================
-
 
 // ---------- Setup ----------
 
@@ -25,7 +14,7 @@ document.getElementById("stage").appendChild(app.canvas);
 // Two layers: drawn in this order, so tiles cover the dots
 const fieldLayer = new PIXI.Graphics();
 app.stage.addChild(fieldLayer);
-const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+// const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 
 // ---------- Colours ----------
@@ -35,7 +24,7 @@ const colours = {};
 
 function readColours() {
   const css = getComputedStyle(document.documentElement);
-  for (const name of ["ink", "muted", "accent", "tile"]) {
+   for (const name of ["muted", "accent"]) {
     colours[name] = new PIXI.Color(css.getPropertyValue(`--${name}`).trim()).toNumber();
   }
 }
@@ -135,22 +124,6 @@ buildField();
 window.addEventListener("resize", buildField);
 
 
-
-
-function drawTiles(time) {
-  artLayer.clear();
-
-  for (const tile of tiles) {
-    tile.hover += (tile.target - tile.hover) * 0.1;
-
-    // Where is the tile on screen right now? Skip it if scrolled away.
-    const r = tile.box.getBoundingClientRect();
-    if (r.bottom < 0 || r.top > window.innerHeight) continue;
-
-    artLayer.rect(r.left, r.top, r.width, r.height).fill(colours.tile);
-    motifs[tile.motif](artLayer, r.left, r.top, r.width, r.height, time, tile.hover);
-  }
-}
 
 
 // ---------- Frame loop ----------
