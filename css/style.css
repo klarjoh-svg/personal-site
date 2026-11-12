@@ -13,9 +13,15 @@
 /* ---------- 1. Colours and sizes ----------
    One ink, one paper, one accent: the page reads like a printed score.
    main.js reads these same variables, so the canvas always matches. */
+
+@font-face {
+  font-family: "SquidGame";
+  src: url("../fonts/squidGame.ttf");
+}
+
 :root {
   color-scheme: light;
-  --paper: #fcf9f9;
+  --paper: #000000;
   --ink: #ff0000;
   --muted: #6b6f73;
   --accent: #1aff00;
@@ -49,6 +55,12 @@ body {
   line-height: 1.5;
 }
 
+.doll {
+  width: 400px;
+  height: auto;
+  display: block;
+}
+
 a { color: inherit; text-underline-offset: 0.2em; }
 a:hover { color: var(--accent); }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
@@ -77,8 +89,9 @@ a:hover { color: var(--accent); }
 }
 
 .logo {
+  font-family: "SquidGame";
   font-weight: 700;
-  font-size: 1.35rem;
+  font-size: 40px;
   letter-spacing: -0.02em;
   text-decoration: none;
 }
@@ -91,27 +104,55 @@ main { padding: 0 var(--edge); }
 
 /* ---------- 4. Intro ---------- */
 .intro {
-  max-width: 40rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--gap);
+  max-width: 80rem;
   padding: clamp(2rem, 10vh, 6rem) 0;
   font-size: clamp(1.2rem, 2vw, 1.45rem);
   line-height: 1.4;
 }
 
-/* The name is already in the logo; the h1 stays for screen readers */
-.intro h1 {
-  position: absolute;
-  width: 1px;
-  height: 1px;
+.intro-text { flex: 0 1 34rem; }
+
+/* Tar resten av raden och centrerar rutan i det utrymmet */
+.doll-area {
+  flex: 1 1 280px;
+  display: flex;
+  justify-content: center;
+}
+
+.doll-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);   /* två bredvid varandra */
+  gap: 0.75rem;
+  width: clamp(220px, 28vw, 360px);        /* ändra storleken på hela rutan här */
+}
+
+.doll-block {
+  border: 3px solid #ff0000;               /* röd ram */
+  aspect-ratio: 1 / 1;                     /* alla block blir kvadratiska och lika stora */
   overflow: hidden;
-  clip: rect(0 0 0 0);
+}
+
+.doll-block img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;                       /* bilden fyller blocket utan att tänjas */
+  display: block;
+}
+
+
+.intro h1 {
+  font-size: 30px;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin: 0 0 0.5em;
 }
 
 .intro p { margin: 0 0 1em; }
-
-.contact {
-  font-weight: 700;
-  color: var(--accent);
-}
 
 
 /* ---------- 5. Work grid ---------- */
