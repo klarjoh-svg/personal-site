@@ -1,92 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Titeln som visas i webbläsarfliken -->
   <title>Klara Johansson</title>
   <meta name="description" content="Klara Johansson">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- hämtar typsnitt -->
   <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-  <!-- PixiJS draws everything generative into this one canvas, behind the page -->
+  <!-- PixiJS -->
   <div id="stage" aria-hidden="true"></div>
 
+  <!-- hedar med namn och meny -->
   <header class="top">
     <a class="logo" href="./">RED LIGHT GREEN LIGHT</a>
     <nav aria-label="Main">
+      <!-- Hoppar ner till avsnittet med id="about" -->
       <a href="#about"> About the project</a>
     </nav>
 
   </header>
-
+  <!-- huvudinnehåll -->
   <main>
-<section class="intro">
-  <div class="intro-text">
-    <h1>Klara Johansson</h1>
-    <p> Second-year student in the <strong>IT, Media and Design </strong>
-      bachelor's program at Södertörn University. </p>
-    <p> I'm very passionate about
-      being creative especially through UX and graphic design. </p>
+    <section class="intro">
+      <div class="intro-text">
+        <!-- text om mig -->
+        <h1>Klara Johansson</h1>
+        <p> Second-year student in the <strong>IT, Media and Design </strong>
+          bachelor's program at Södertörn University. </p>
+        <p> I'm very passionate about
+          being creative especially through UX and graphic design. </p>
 
-  </div>
-<div class="doll-area">
-    <div class="doll-grid">
-      <div class="doll-block"><img src="images/doll.gif" alt=""></div>
-      <div class="doll-block"><img src="images/doll.gif" alt=""></div>
-      <div class="doll-block"><img src="images/doll.gif" alt=""></div>
-      <div class="doll-block"><img src="images/doll.gif" alt=""></div>
-    </div>
-  </div>
-</section>
+      </div>
+      <!-- fyra gif på squidgame dockor i ett rutnät -->
+      <div class="doll-area">
+        <div class="doll-grid">
+          <div class="doll-block"><img src="images/doll.gif" alt=""></div>
+          <div class="doll-block"><img src="images/doll.gif" alt=""></div>
+          <div class="doll-block"><img src="images/doll.gif" alt=""></div>
+          <div class="doll-block"><img src="images/doll.gif" alt=""></div>
+        </div>
+      </div>
+    </section>
 
 
-
+    <!-- avsnittet om projektet som läggs till nästa vecka (menylänken pekar hit via id="about")  -->
     <section id="about" class="about">
       <h2>About the project</h2>
       <div class="cols">
+        <!-- Vänster kolumn -->
         <div>
           <h3>Interactive multimedia game</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
-            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna
+            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat.
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+            laborum.</p>
+
           <h3>Visuals</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
-            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna
+            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat.
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+            laborum.</p>
         </div>
+        <!-- Höger kolumn -->
         <div>
           <h3>Process</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
-            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna
+            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat.
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+            laborum.</p>
           <h3>Learning</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
-            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna
+            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat.
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+            laborum.</p>
           <h3>Rave</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
-            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna
+            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat.
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+            laborum.</p>
         </div>
       </div>
     </section>
   </main>
 
+  <!-- footer med namn -->
   <footer class="bottom">
     <p>© 2026 Klara Johansson</p>
-    <p>move to push the field, click to send a ripple</p>
   </footer>
 
+  <!-- länk till pixi JSscript -->
   <script src="https://cdn.jsdelivr.net/npm/pixi.js@8.6.6/dist/pixi.min.js"></script>
   <script type="module" src="js/main.js"></script>
 </body>
+
 </html>

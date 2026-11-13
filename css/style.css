@@ -1,178 +1,292 @@
-
-
-
-/* ---------- 1. Colours and sizes ----------
-   One ink, one paper, one accent: the page reads like a printed score.
-   main.js reads these same variables, so the canvas always matches. */
-
+/* Laddar in det egna typsnittet "SquidGame" från fontmappen */
 @font-face {
   font-family: "SquidGame";
   src: url("../fonts/squidGame.ttf");
 }
 
+/* Variabler som kan användas överallt med var(--namn) */
 :root {
+  /* Sidan använder ljust läge för formulär och liknande */
   color-scheme: light;
+  /* Bakgrundsfärg (svart) */
   --paper: #000000;
+  /* Textfärg (röd) */
   --ink: #ff0000;
+  /* Dämpad grå färg för mindre viktig text */
   --muted: #6b6f73;
+  /* Accentfärg (grön) för länkar och rörliga prickar */
   --accent: #1aff00;
+  /* Bortkommenterad färg som inte används */
   /* --tile: #f1f2f0; */
 
+  /* clamp(minst, önskat, högst): värdet växer med skärmen men stannar inom gränserna */
+  /* Marginal till sidans kanter */
   --edge: clamp(1rem, 4vw, 3rem);
+  /* Mellanrum mellan element */
   --gap: clamp(1rem, 2.5vw, 2rem);
 }
 
 
 
-/* ---------- 2. Base ---------- */
-*, *::before, *::after { box-sizing: border-box; }
+/* uppbygnad */
+
+/* Padding och ram räknas in i elementens bredd, vilket gör layouten enklare att räkna på */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
 body {
+  /* Tar bort webbläsarens standardmarginal */
   margin: 0;
+  /* Svart bakgrund */
   background: var(--paper);
+  /* Röd text */
   color: var(--ink);
+  /* Typsnitt, med reservtypsnitt om det första inte laddas */
   font-family: "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;
+  /* Lite större text än standard */
   font-size: 1.125rem;
+  /* Radavstånd */
   line-height: 1.5;
 }
 
+/* Dockbild (klassen används inte i HTML-filen du visat) */
 .doll {
   width: 400px;
+  /* Höjden följer bildens proportioner */
   height: auto;
   display: block;
 }
 
-a { color: inherit; text-underline-offset: 0.2em; }
-a:hover { color: var(--accent); }
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+/* Länkar får samma färg som texten runt omkring, och understrykningen sitter lite längre ner */
+a {
+  color: inherit;
+  text-underline-offset: 0.2em;
+}
 
-/* The canvas is fixed behind the page and lets clicks through */
+/* Grön länk när man håller musen över */
+a:hover {
+  color: var(--accent);
+}
+
+/* Tydlig ram runt det man valt med tangentbordet (viktigt för tillgänglighet) */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Canvasen ligger fast bakom sidan och släpper igenom klick */
 #stage {
+  /* Ligger kvar när man scrollar */
   position: fixed;
+  /* Täcker hela fönstret (top, right, bottom och left är 0) */
   inset: 0;
+  /* Längst bak */
   z-index: 0;
+  /* Klick går igenom till innehållet */
   pointer-events: none;
 }
-#stage canvas { display: block; }
 
-.top, main, .bottom {
+/* Tar bort det lilla mellanrummet under canvasen */
+#stage canvas {
+  display: block;
+}
+
+/* Header, main och footer ligger ovanpå canvasen (z-index 1 är högre än 0) */
+.top,
+main,
+.bottom {
   position: relative;
   z-index: 1;
 }
 
 
-/* ---------- 3. Header ---------- */
+/* header */
+
+/* Toppen av sidan */
 .top {
+  /* Lägger logga och meny bredvid varandra */
   display: flex;
+  /* Loggan till vänster, menyn till höger */
   justify-content: space-between;
+  /* Texterna står på samma baslinje */
   align-items: baseline;
   padding: var(--edge);
 }
 
 .logo {
+  /* Det egna typsnittet */
   font-family: "SquidGame";
   font-weight: 700;
   font-size: 40px;
+  /* Bokstäverna sitter lite tätare */
   letter-spacing: -0.02em;
+  /* Ingen understrykning */
   text-decoration: none;
 }
 
-.top nav { display: flex; gap: 1.5rem; }
-.top nav a { text-decoration: none; }
+/* Menylänkar bredvid varandra med avstånd */
+.top nav {
+  display: flex;
+  gap: 1.5rem;
+}
 
-main { padding: 0 var(--edge); }
+/* Ingen understrykning på menylänkarna */
+.top nav a {
+  text-decoration: none;
+}
+
+/* Sidomarginal för huvudinnehållet */
+main {
+  padding: 0 var(--edge);
+}
 
 
-/* ---------- 4. Intro ---------- */
+/* intro */
+
+/* Första avsnittet: text till vänster och dockor till höger */
 .intro {
   display: flex;
+  /* Centrerar innehållet lodrätt */
   align-items: center;
   justify-content: space-between;
+  /* Hamnar under varandra om det inte ryms (t.ex. på mobil) */
   flex-wrap: wrap;
   gap: var(--gap);
+  /* Avsnittet blir aldrig bredare än så här */
   max-width: 80rem;
+  /* Luft över och under som anpassar sig till skärmhöjden */
   padding: clamp(2rem, 10vh, 6rem) 0;
   font-size: clamp(1.2rem, 2vw, 1.45rem);
   line-height: 1.4;
 }
 
-.intro-text { flex: 0 1 34rem; }
+/* Textdelen: får växa upp till 34rem bred */
+.intro-text {
+  flex: 0 1 34rem;
+}
 
 /* Tar resten av raden och centrerar rutan i det utrymmet */
 .doll-area {
+  /* Tar upp resten av raden, minst ca 280px */
   flex: 1 1 280px;
   display: flex;
+  /* Centrerar rutnätet vågrätt */
   justify-content: center;
 }
 
 .doll-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);   /* två bredvid varandra */
+  /* Två bredvid varandra */
+  grid-template-columns: repeat(2, 1fr);
+  /* Mellanrum mellan blocken */
   gap: 0.75rem;
-  width: clamp(220px, 28vw, 360px);        /* ändra storleken på hela rutan här */
+  /* Ändra storleken på hela rutan här */
+  width: clamp(220px, 28vw, 360px);
 }
 
 .doll-block {
-  border: 3px solid #ff0000;               /* röd ram */
-  aspect-ratio: 1 / 1;                     /* alla block blir kvadratiska och lika stora */
+  /* Röd ram */
+  border: 3px solid #ff0000;
+  /* Alla block blir kvadratiska och lika stora */
+  aspect-ratio: 1 / 1;
+  /* Döljer det som sticker utanför blocket */
   overflow: hidden;
 }
 
 .doll-block img {
   width: 100%;
   height: 100%;
-  object-fit: cover;                       /* bilden fyller blocket utan att tänjas */
+  /* Bilden fyller blocket utan att tänjas */
+  object-fit: cover;
   display: block;
 }
 
 
+/* Rubrik "Klara Johansson" */
 .intro h1 {
   font-size: 30px;
+  /* Tätt radavstånd */
   line-height: 1.05;
   letter-spacing: -0.03em;
+  /* Ingen marginal upptill, lite under */
   margin: 0 0 0.5em;
 }
 
-.intro p { margin: 0 0 1em; }
+/* Luft under varje stycke */
+.intro p {
+  margin: 0 0 1em;
+}
 
 
 
-/* ---------- 6. About ---------- */
-.about { padding: clamp(4rem, 12vh, 8rem) 0 3rem; }
+---------- Om projektet ----------
+/* (Numreringen hoppar från 4 till 6 i din kod) */
 
-.about > h2 {
+/* Avsnittet "About the project": mycket luft ovanför, lite under */
+.about {
+  padding: clamp(4rem, 12vh, 8rem) 0 3rem;
+}
+
+/* ">" betyder att det bara gäller h2 som ligger direkt i .about */
+.about>h2 {
+  /* Stor rubrik som växer med skärmen */
   font-size: clamp(2rem, 5vw, 3.5rem);
   letter-spacing: -0.03em;
   margin: 0 0 2rem;
 }
 
+/* Kolumnerna med text */
 .cols {
   display: grid;
+  /* Så många kolumner som ryms, varje minst 22rem bred. På smal skärm blir det en kolumn */
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  /* Radavstånd, och dubbelt så stort mellan kolumner */
   gap: var(--gap) calc(var(--gap) * 2);
   max-width: 64rem;
 }
 
+/* Små rubriker (Process, Learning osv.) i dämpad grå färg */
 .cols h3 {
   font-size: 1rem;
+  /* Normal tjocklek istället för fet */
   font-weight: 400;
   color: var(--muted);
   margin: 0 0 0.6rem;
 }
 
-.cols h3:not(:first-child) { margin-top: 2rem; }
-.cols p { margin: 0 0 1em; max-width: 34rem; }
+/* Alla h3 utom den första i varje kolumn får extra luft ovanför */
+.cols h3:not(:first-child) {
+  margin-top: 2rem;
+}
+
+/* Texten får inte bli bredare än 34rem så att raderna blir lätta att läsa */
+.cols p {
+  margin: 0 0 1em;
+  max-width: 34rem;
+}
 
 
-/* ---------- 7. Footer ---------- */
+/* footer */
+
+/* Längst ner på sidan */
 .bottom {
   display: flex;
+  /* Copyright till vänster, instruktion till höger */
   justify-content: space-between;
+  /* Hamnar under varandra på smala skärmar */
   flex-wrap: wrap;
   gap: 1rem;
   padding: 2rem var(--edge);
+  /* Dämpad grå text */
   color: var(--muted);
+  /* Lite mindre text */
   font-size: 0.95rem;
 }
 
-.bottom p { margin: 0; }
+/* Tar bort standardmarginal på styckena */
+.bottom p {
+  margin: 0;
+}
