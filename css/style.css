@@ -222,10 +222,8 @@ main {
 
 
 
----------- Om projektet ----------
-/* (Numreringen hoppar från 4 till 6 i din kod) */
+/*Om projektet */
 
-/* Avsnittet "About the project": mycket luft ovanför, lite under */
 .about {
   padding: clamp(4rem, 12vh, 8rem) 0 3rem;
 }
